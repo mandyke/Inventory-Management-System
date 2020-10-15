@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Inventory_Management_System.Models.Inventory>
+
+@{
+    ViewData["Title"] = "Inventory";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<p>
+    <a asp-action="Create">Create New Inventory</a><br />
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                S/N
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Warehouse)
+            </th>
+            <th>
+                Inventory Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            var serialN = 0;
+        }
+@foreach (var item in Model) {
+    serialN++;
+        <tr>
+            <td>
+                @serialN
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Warehouse.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

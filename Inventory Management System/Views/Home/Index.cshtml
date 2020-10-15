@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+    @if (SignInManager.IsSignedIn(User))
+    {
+        Layout = "~/Views/Shared/_Layout2.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<div class="text-center">
+    <h2 class="display-4">Welcome To The Inventory Management System</h2>
+    <p>Please register to get your login details, you can login if you are a registered employee</p>
+</div>

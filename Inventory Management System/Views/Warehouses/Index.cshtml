@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Inventory_Management_System.Models.Warehouse>
+
+@{
+    ViewData["Title"] = "Warehouse";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<p>
+    <a asp-action="Create">Create New Warehouse</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                S/N
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            var serialN = 0;
+        }
+@foreach (var item in Model) {
+    serialN++;
+        <tr>
+            <td>
+                @serialN
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
